@@ -51,21 +51,30 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
+            if event.key == pygame.K_LEFT and x_change != speed:  # Check if not moving right
                 x_change = -speed
                 y_change = 0
-            elif event.key == pygame.K_RIGHT:
+            elif event.key == pygame.K_RIGHT and x_change != -speed:  # Check if not moving left
                 x_change = speed
                 y_change = 0
-            elif event.key == pygame.K_UP:
+            elif event.key == pygame.K_UP and y_change != speed:  # Check if not moving down
                 x_change = 0
                 y_change = -speed
-            elif event.key == pygame.K_DOWN:
+            elif event.key == pygame.K_DOWN and y_change != -speed:  # Check if not moving up
                 x_change = 0
                 y_change = speed
 
     # Update snake position based on direction variables
     player_rect.move_ip(x_change, y_change)
+
+    # Check if the snake collides with itself
+    for segment in snake_body[1:]:
+        if player_rect.colliderect(segment):
+            print("Game Over - Snake collided with itself")
+            crash_sound.play()
+            game_over = True
+            break  # Exit the loop if collision detected
+
 
     # Check if the snake hits the screen boundaries (corners)
     if (player_rect.left <= 0 or player_rect.right >= width or
