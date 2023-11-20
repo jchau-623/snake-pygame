@@ -132,3 +132,5 @@ while running:
             pygame.display.flip()  # Update the display to show "Game Over"
 
             # make differnt folders for code
+            # fix error for everytime the snake turns after eating one fruit it ends game
+            # make retry button work
