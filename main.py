@@ -1,5 +1,6 @@
 import pygame
 import sys
+sys.settrace
 
 pygame.init()
 
