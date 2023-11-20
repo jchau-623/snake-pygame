@@ -130,3 +130,5 @@ while running:
             screen.blit(button_text, button_rect)
 
             pygame.display.flip()  # Update the display to show "Game Over"
+
+            # make differnt folders for code
